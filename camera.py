@@ -41,6 +41,8 @@ def capture_image():
 #to do this create a function that initiates the video process 
 #function should also disable the RECORD button (to prevent multiple recording at the same time)
 #and enable the STOP RECORDING button
+#mp4 is a popular video format used to share, download and stream content
+#it is a container format, which means it can store various types of audio and video as long as it is encoded in a codec mp4 format
 
 def start_recording():
     global video_writer, recording_start_time, recording_stopped, update_camera
