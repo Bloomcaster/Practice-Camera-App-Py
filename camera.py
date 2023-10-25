@@ -104,7 +104,7 @@ def record_and_display():
             video_writer.write(frame)
             time.sleep(0.05)
             
-    camer_feed.after(10, update_camera_feed)
+    camera_feed.after(10, update_camera_feed)
     
 
 #this function is now to display the images that are recorded. Breakdown: this function opens an image and displays it in the feed
@@ -267,6 +267,23 @@ camera_feed.grid(row=1, column=0, columnspan=5)
 
 # Initialize the camera
 cap = cv2.VideoCapture(0)
+
+# Function to update the camera feed
+def update_camera_feed():
+    if update_camera:
+        if not video_writer:
+            ret, frame = cap.read()
+            if ret:
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                img = Image.fromarray(frame)
+                photo = ImageTk.PhotoImage(image=img)
+                camera_feed.config(image=photo)
+                camera_feed.image = photo
+    root.after(10, update_camera_feed)
+update_camera_feed()
+
+# Start the tkinter main loop
+root.mainloop()
     
 
         
